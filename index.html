@@ -1,0 +1,33 @@
+<html>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <link rel="stylesheet" type="text/css" href="css.css" />
+
+    <body>
+        <h1>Penguin Scatter</h1>
+        <div id="plot1">
+            <h2>ScatterPlot: Grade on Final vs Grade on HW</h2>
+            <h5>(For both axis, dots past the red line indicate passing).</h5>
+            <svg id="final_v_hw"></svg>
+        </div>
+        
+        <div id="plot2">
+            <svg id="hw_v_quiz"></svg>
+        </div>
+        
+        <div id="plot2">
+            <svg id="test_v_final"></svg>
+        </div>
+        
+        <div id="plot2">
+            <svg id="test_v_quiz"></svg>
+        </div>
+        
+        <div id="tooltip" class="hidden">
+            <img id="pengImg" />
+            <p id="xdata"></p>
+            <p id="ydata"></p>
+        </div>
+            <script src="js.js"></script>
+        
+    </body>
+</html>
