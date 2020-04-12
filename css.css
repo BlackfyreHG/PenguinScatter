@@ -1,8 +1,11 @@
+circle:hover {
+    fill: orange;
+}
+
 #tooltip {
     position: absolute;
-    width: 200px;
-    height: auto;
     padding: 10px;
+    width: 170px;
     background-color: white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -13,7 +16,7 @@
     pointer-events: none;
 }
 
-#tooltip.hidden {
+.hidden {
     display: none;
 }
 
@@ -24,5 +27,26 @@
 }
 
 #tooltip #pengImg {
-    width: 150px;
+    height: 50px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    float: left;
+}
+
+btn {
+    background-color: skyblue;
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+btn:hover {
+    cursor: pointer;
+    background-color: orangered;
+}
+
+btn.active {
+    background-color: orange;
 }

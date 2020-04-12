@@ -72,8 +72,8 @@ var scatter1 = function(students,width,height) //Final versus mean homework
         .attr("fill","blue")
     
         .on("mouseover", function(student) {
-            var xPosition = parseFloat(d3.select(this).attr("cx")) + 20//+ xScale.bandwidth() / 2;
-            var yPosition = parseFloat(d3.select(this).attr("cy")) - 10;
+            var xPosition = parseFloat(d3.select(this).attr("cx")) + 10;
+            var yPosition = parseFloat(d3.select(this).attr("cy")) + 10;
         
             d3.select("#tooltip")
                 .style("left", xPosition + "px")
@@ -86,6 +86,18 @@ var scatter1 = function(students,width,height) //Final versus mean homework
         
             d3.select("#tooltip").select("#xdata")
                 .text("Mean HW: "+Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #finalScore")
+                .text("Final Score: " + student.final[0].grade);
+        
+            d3.select("#tooltip #avgHW")
+                .text("HW Average: " + Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #avgQuiz")
+                .text("Quiz Average: " + Math.round(meanGrade(student.quizes)));
+        
+            d3.select("#tooltip #avgTest")
+                .text("Test Average: " + Math.round(meanGrade(student.test)));
         
             d3.select("#tooltip").classed("hidden", false);
                 
@@ -144,8 +156,8 @@ var scatter2 = function(students,width,height) //scatter for Mean hw versus Mean
         .attr("fill","blue")
     
         .on("mouseover", function(student) {
-            var xPosition = parseFloat(d3.select(this).attr("cx")) + 20//+ xScale.bandwidth() / 2;
-            var yPosition = parseFloat(d3.select(this).attr("cy")) - 10;
+            var xPosition = parseFloat(d3.select(this).attr("cx")) + 10;
+            var yPosition = parseFloat(d3.select(this).attr("cy")) + 10;
         
             d3.select("#tooltip")
                 .style("left", xPosition + "px")
@@ -158,6 +170,18 @@ var scatter2 = function(students,width,height) //scatter for Mean hw versus Mean
         
             d3.select("#tooltip").select("#ydata")
                 .text("Mean HW: "+Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #finalScore")
+                .text("Final Score: " + student.final[0].grade);
+        
+            d3.select("#tooltip #avgHW")
+                .text("HW Average: " + Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #avgQuiz")
+                .text("Quiz Average: " + Math.round(meanGrade(student.quizes)));
+        
+            d3.select("#tooltip #avgTest")
+                .text("Test Average: " + Math.round(meanGrade(student.test)));
         
             d3.select("#tooltip").classed("hidden", false);
                 
@@ -219,8 +243,8 @@ var scatter3 = function(students,width,height) //Scatter of Mean Test versus Fin
         .attr("fill","blue")
     
         .on("mouseover", function(student) {
-            var xPosition = parseFloat(d3.select(this).attr("cx")) + 20//+ xScale.bandwidth() / 2;
-            var yPosition = parseFloat(d3.select(this).attr("cy")) - 10;
+            var xPosition = parseFloat(d3.select(this).attr("cx")) + 10;
+            var yPosition = parseFloat(d3.select(this).attr("cy")) + 10;
         
             d3.select("#tooltip")
                 .style("left", xPosition + "px")
@@ -233,6 +257,18 @@ var scatter3 = function(students,width,height) //Scatter of Mean Test versus Fin
         
             d3.select("#tooltip").select("#ydata")
                 .text("Mean Test: "+Math.round(meanGrade(student.test)));
+        
+            d3.select("#tooltip #finalScore")
+                .text("Final Score: " + student.final[0].grade);
+        
+            d3.select("#tooltip #avgHW")
+                .text("HW Average: " + Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #avgQuiz")
+                .text("Quiz Average: " + Math.round(meanGrade(student.quizes)));
+        
+            d3.select("#tooltip #avgTest")
+                .text("Test Average: " + Math.round(meanGrade(student.test)));
         
             d3.select("#tooltip").classed("hidden", false);
                 
@@ -289,7 +325,41 @@ var scatter4 = function(students,width,height) //Scatter of Mean Test versus Mea
             return yScale(meanGrade(student.quizes));  
         })
         .attr("r",3)
-        .attr("fill","blue");
+        .attr("fill","blue")
+    
+        .on("mouseover", function(student) {
+            var xPosition = parseFloat(d3.select(this).attr("cx")) + 10;
+            var yPosition = parseFloat(d3.select(this).attr("cy")) + 10;
+        
+            d3.select("#tooltip")
+                .style("left", xPosition + "px")
+                .style("top", yPosition + "px")
+                .select("#pengImg")
+                    .attr("src", "imgs/" + student.picture);
+        
+            d3.select("#tooltip").select("#xdata")
+                .text("Mean tests: "+ Math.round(meanGrade(student.test)));
+        
+            d3.select("#tooltip").select("#ydata")
+                .text("Mean Quizzes: "+Math.round(meanGrade(student.quizes)));
+        
+            d3.select("#tooltip #finalScore")
+                .text("Final Score: " + student.final[0].grade);
+        
+            d3.select("#tooltip #avgHW")
+                .text("HW Average: " + Math.round(meanGrade(student.homework)));
+        
+            d3.select("#tooltip #avgQuiz")
+                .text("Quiz Average: " + Math.round(meanGrade(student.quizes)));
+        
+            d3.select("#tooltip #avgTest")
+                .text("Test Average: " + Math.round(meanGrade(student.test)));
+        
+            d3.select("#tooltip").classed("hidden", false);
+                
+        }).on("mouseout", function() {
+            d3.select("#tooltip").classed("hidden", true);
+        });
     
     svg.append("line")
         .attr("x1",xScale(60))
@@ -306,16 +376,31 @@ var scatter4 = function(students,width,height) //Scatter of Mean Test versus Mea
         .attr("stroke","red");
 }
 
+var showScatter = function () {
+    d3.selectAll("btn.plot").on("click", function() {
+        d3.selectAll("btn.plot").classed("active", false);
+        d3.select(this).classed("active", true);
+        
+        d3.selectAll(".plotDiv")
+          .classed("hidden", true);
+        
+        var ref = d3.select(this).attr("id-ref");
+        d3.select(ref).classed("hidden", false);
+    })
+}
+
 // Get the penguin information
 var penguinPromise = d3.json("classData.json");
 penguinPromise.then(function(students) {
-    var width = 550;
-    var height= 300;
+    var width = 800;
+    var height= 500;
     
     scatter1(students,width,height);
     scatter2(students,width,height);
     scatter3(students,width,height);
     scatter4(students,width,height);
+    
+    showScatter();
     
 }, function(err) {
     console.log("failed to get student data:", err);

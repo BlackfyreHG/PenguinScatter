@@ -4,30 +4,47 @@
 
     <body>
         <h1>Penguin Scatter</h1>
-        <div id="plot1">
+        <h5>On the axes, the red line indicates a minimum passing grade (60%)</h5>
+        <btn class="plot active" id-ref="#plot1">Final vs. HW Mean</btn>
+        <btn class="plot" id-ref="#plot2">HW Mean vs. Quiz Mean</btn>
+        <btn class="plot" id-ref="#plot3">Test Mean vs. Final Mean</btn>
+        <btn class="plot" id-ref="#plot4">Test Mean vs. Quiz Mean</btn>
+        
+        <br /><br />
+        <hr />
+        <div class="plotDiv" id="plot1">
             <h2>ScatterPlot: Grade on Final vs Grade on HW</h2>
-            <h5>(For both axis, dots past the red line indicate passing).</h5>
             <svg id="final_v_hw"></svg>
         </div>
         
-        <div id="plot2">
+        <div class="plotDiv hidden" id="plot2">
+            <h2>ScatterPlot: Grade on HW vs Grade on Quizzes</h2>
             <svg id="hw_v_quiz"></svg>
         </div>
         
-        <div id="plot2">
+        <div class="plotDiv hidden" id="plot3">
+            <h2>ScatterPlot: Grade on Tests vs Grade on Final</h2>
             <svg id="test_v_final"></svg>
         </div>
         
-        <div id="plot2">
+        <div class="plotDiv hidden" id="plot4">
+            <h2>ScatterPlot: Grade on Tests vs Grade on Quizzes</h2>
             <svg id="test_v_quiz"></svg>
         </div>
         
-        <div id="tooltip" class="hidden">
+        <div class="hidden" id="tooltip">
             <img id="pengImg" />
             <p id="xdata"></p>
             <p id="ydata"></p>
+            <br />
+            <hr />
+            <p><i>Summary:</i></p>
+            <p id="finalScore"></p>
+            <p id="avgHW"></p>
+            <p id="avgQuiz"></p>
+            <p id="avgTest"></p>
         </div>
-            <script src="js.js"></script>
+        <script src="js.js"></script>
         
     </body>
 </html>
