@@ -394,7 +394,7 @@ var penguinPromise = d3.json("classData.json");
 penguinPromise.then(function(students) {
     var width = 800;
     var height= 500;
-    
+    console.log(students);
     scatter1(students,width,height);
     scatter2(students,width,height);
     scatter3(students,width,height);
